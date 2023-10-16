@@ -25,7 +25,6 @@ var torusMaterial = new THREE.MeshStandardMaterial({
 });
 var torus = new THREE.Mesh(torusGeometry, torusMaterial);
 scene.add(torus);
-
 // Moon at the center of the torus with texture
 var moonGeometry = new THREE.SphereGeometry(3, 32, 32);
 var moonTexture = new THREE.TextureLoader().load('moon_texture.jpg'); // Provide the path to your moon texture
@@ -150,6 +149,9 @@ function animateBalloons() {
   });
 }
 // Function to animate the scene
+///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////
 function animate() {
   requestAnimationFrame(animate);
 
@@ -167,6 +169,9 @@ function animate() {
 
   // Move stars in a sine wave pattern
   moveStars();
+  /////////////////////////////////////////
+  
+  /////////////////////////////////////////
 
   // Animate freely floating squares
   animateFloatingSquares();
