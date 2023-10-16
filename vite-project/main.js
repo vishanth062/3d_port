@@ -2,6 +2,7 @@ import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import{GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 100);
 camera.position.setZ(40);
