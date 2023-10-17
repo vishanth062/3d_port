@@ -56,6 +56,11 @@ scene.add(gridhelper);
 // Controls
 var controls = new OrbitControls(camera, renderer.domElement);
 scene.background = new THREE.Color(0x000000); // Set background color to black
+controls.autoRotate = true;
+controls.enableZoom = true;
+controls.minZoom = 0.5;
+controls.maxZoom = 2;
+controls.update();
 
 // Function to move the spinning ball based on mouse coordinates
 function moveBall(event) {
@@ -180,13 +185,16 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-// Start the animation
+// Start the animation////////////////////////////////////////////////////////////////////////////////////
 function handleScroll() {
   const scrollY = window.scrollY;
   const zoomFactor = 0.1; // Adjust the zoom speed as needed
 
   // Update camera position based on scroll
-  camera.position.z = 40 - scrollY * zoomFactor;
+ //camera.position.z = (20 - scrollY * zoomFactor);
+ 
+ //console.log(camera.position.z);
+
 }
 
 // Add scroll event listener
