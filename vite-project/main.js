@@ -188,15 +188,71 @@ function animate() {
 // Start the animation////////////////////////////////////////////////////////////////////////////////////
 function handleScroll() {
   const scrollY = window.scrollY;
-  const zoomFactor = 0.1; // Adjust the zoom speed as needed
+  const rotationSpeed = 0.001; // Adjust the rotation speed as needed
 
-  // Update camera position based on scroll
- //camera.position.z = (20 - scrollY * zoomFactor);
- 
- //console.log(camera.position.z);
+  // Calculate the rotation angle based on scroll
+  const rotationAngle = scrollY * rotationSpeed;
+
+  // Calculate the new camera position for a rotation around the torus along the y-axis
+  const radius = 40; // Adjust the radius as needed
+  const cameraX = radius * Math.sin(rotationAngle);
+  const cameraZ = radius * Math.cos(rotationAngle);
+
+  // Update the camera position
+  camera.position.set(cameraX, 10, cameraZ);
+
+  // Rotate the camera to keep it focused on the torus along the y-axis
+  camera.rotation.y = rotationAngle;
+
+  // Update camera lookAt to focus on the torus
+  camera.lookAt(torus.position);
+
+  // Smoothly interpolate the field of view as before (optional)
+  const targetFov = 45 - scrollY * 0.1;
+  const minFov = 30;
+  const maxFov = 60;
+  const clampedFov = THREE.MathUtils.clamp(targetFov, minFov, maxFov);
+  const lerpFactor = 0.1;
+  camera.fov = THREE.MathUtils.lerp(camera.fov, clampedFov, lerpFactor);
+
+  // Update camera projection matrix after changing the field of view
+  camera.updateProjectionMatrix();
 
 }
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ... (Your existing code)
 
+// Function to handle parallax scrolling
+function handleParallaxScroll() {
+  const scrollY = window.scrollY;
+
+  // Parallax effect for the spinning ball
+ // spinningBall.position.y = 10 - scrollY * 0.02;
+
+  // Parallax effect for the torus
+  //torus.position.y = 10 - scrollY * 0.01;
+
+  // Parallax effect for the moon
+  //moon.position.y = -scrollY * 0.01;
+
+  // Parallax effect for the background stars
+  moveStars();
+
+  // Additional parallax effects for other elements can be added here
+}
+
+// Add scroll event listener for parallax scrolling
+document.addEventListener('scroll', handleParallaxScroll);
+
+// ... (Your existing code)
+
+// Function to move stars in a parallax scrolling pattern
+
+
+// ... (Your existing code)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////star moving 
 // Add scroll event listener
 document.addEventListener('scroll', handleScroll);
 animate();
@@ -235,6 +291,7 @@ function moveStars() {
     const distance = 5 + index * 0.1;
     const speed = 0.1;
 
+    // Apply parallax effect by adjusting the position based on scroll
     star.position.x = star.userData.initialX + Math.sin(time * speed) * distance;
     star.position.y = star.userData.initialY + Math.cos(time * speed) * distance;
     star.position.z = star.userData.initialZ + Math.sin(time * speed) * distance;
