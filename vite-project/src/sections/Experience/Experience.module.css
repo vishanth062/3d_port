@@ -1,0 +1,8 @@
+.experience {
+  border-top: 1px solid var(--color-border);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-6);
+}

@@ -1,0 +1,64 @@
+:root {
+  /* Midnight silver — cool space, not cyan neon, not warm bronze */
+  --color-void: #050912;
+  --color-space: #0a1220;
+  --color-navy: #121c2e;
+  --color-panel: rgba(14, 22, 38, 0.6);
+  --color-text: #eef3f8;
+  --color-text-muted: #9aa8ba;
+  --color-accent: #8fb3c9;
+  --color-accent-soft: rgba(143, 179, 201, 0.14);
+  --color-accent-strong: #d5e4ee;
+  --color-border: rgba(238, 243, 248, 0.11);
+  --color-border-strong: rgba(143, 179, 201, 0.4);
+  --color-glow: rgba(143, 179, 201, 0.2);
+  --color-nebula: rgba(196, 181, 253, 0.22);
+  --color-mist: rgba(251, 146, 60, 0.1);
+  --color-rose: #f9a8d4;
+  --color-amber: #fdba74;
+  --color-violet: #c4b5fd;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Manrope', 'Segoe UI', sans-serif;
+  --fs-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
+  --fs-sm: clamp(0.84rem, 0.8rem + 0.2vw, 0.92rem);
+  --fs-base: clamp(0.98rem, 0.94rem + 0.25vw, 1.05rem);
+  --fs-md: clamp(1.1rem, 1.02rem + 0.4vw, 1.28rem);
+  --fs-lg: clamp(1.55rem, 1.2rem + 1.1vw, 2.2rem);
+  --fs-xl: clamp(2.3rem, 1.6rem + 2.2vw, 3.8rem);
+  --fs-hero: clamp(3.6rem, 2.2rem + 5.5vw, 7.2rem);
+  --lh-tight: 0.95;
+  --lh-snug: 1.25;
+  --lh-body: 1.7;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --section-y: clamp(5rem, 10vw, 9rem);
+  --content-max: 74rem;
+  --content-narrow: 40rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.45rem;
+  --radius-lg: 0.75rem;
+  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.45);
+  --blur-panel: 16px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 180ms;
+  --duration-base: 360ms;
+  --duration-slow: 800ms;
+
+  --z-bg: 0;
+  --z-content: 1;
+  --z-nav: 40;
+  --z-overlay: 50;
+}

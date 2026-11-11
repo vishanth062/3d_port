@@ -1,0 +1,59 @@
+.card {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6) 0 var(--space-6) var(--space-5);
+  border-left: 1px solid var(--color-accent);
+  background: transparent;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.top h3 {
+  margin: var(--space-2) 0;
+  max-width: 18ch;
+  font-size: clamp(1.8rem, 1.4rem + 1.2vw, 2.8rem);
+}
+
+.location,
+.dates {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+}
+
+.promotions,
+.summary {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.promotions li {
+  width: fit-content;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-accent-strong);
+  font-size: var(--fs-sm);
+  border-bottom: 1px solid var(--color-border-strong);
+}
+
+.summary li {
+  position: relative;
+  padding-left: 0;
+  color: var(--color-text-muted);
+  font-weight: 300;
+  max-width: 62ch;
+}
+
+.summary li::before {
+  display: none;
+}

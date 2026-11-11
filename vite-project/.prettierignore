@@ -1,0 +1,10 @@
+dist
+node_modules
+package-lock.json
+sony_fx_300_-_jackal
+*.pdf
+*.bin
+*.gltf
+*.png
+*.jpg
+*.jpeg

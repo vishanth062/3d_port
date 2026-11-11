@@ -1,0 +1,110 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  padding: var(--space-4) var(--space-5);
+  backdrop-filter: blur(14px);
+  background: rgba(5, 9, 18, 0.78);
+  border-bottom: 1px solid var(--color-border);
+  pointer-events: auto;
+}
+
+.bar {
+  width: min(100%, var(--content-max));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-size: 1.2rem;
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  display: inline-flex;
+  padding: 0.35rem 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.nav a:hover,
+.active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+.menuToggle {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  place-items: center;
+  gap: 0.3rem;
+}
+
+.menuToggle span {
+  display: block;
+  width: 1rem;
+  height: 1.5px;
+  background: var(--color-text);
+}
+
+@media (max-width: 860px) {
+  .menuToggle {
+    display: grid;
+  }
+
+  .nav {
+    position: absolute;
+    left: var(--space-5);
+    right: var(--space-5);
+    top: calc(100% + 0.35rem);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: rgba(8, 14, 24, 0.97);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .navOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+}

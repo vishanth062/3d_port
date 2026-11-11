@@ -1,0 +1,9 @@
+.header h2 {
+  margin: 0;
+}
+
+.header p:last-child {
+  margin: 0;
+  max-width: 42ch;
+  font-weight: 300;
+}

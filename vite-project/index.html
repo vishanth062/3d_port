@@ -1,297 +1,38 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta name="google-site-verification" content="RqTQY-IeyCf_CVHASXcrWUV4rMoUAo7BXPbJGab9Z_U" />
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <meta
+      name="google-site-verification"
+      content="RqTQY-IeyCf_CVHASXcrWUV4rMoUAo7BXPbJGab9Z_U"
+    />
+    <title>Vishanth — Full-Stack Software Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Vishanth — full-stack software engineer building multi-tenant SaaS with React, TypeScript, Node.js, and AWS serverless."
+    />
+    <meta name="author" content="Vishanth" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vishanth — Full-Stack Software Engineer" />
+    <meta
+      property="og:description"
+      content="Premium space-themed portfolio showcasing multi-tenant SaaS engineering across React, TypeScript, Node.js, and AWS serverless."
+    />
+    <meta property="og:url" content="https://protfolio-zs97.onrender.com" />
+    <meta property="og:image" content="/textures/milky_way.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#050912" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <footer>
-      <a href="./sitemap.xml">Sitemap</a>
-  </footer>  
-    <canvas id="bg"></canvas>
-    <script type="module" src="/main.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
-  <div class="container">
-  <main>
-    <h1>VISHANTH </h1>
-    <p  style="color: aliceblue;">(<b>NOTE:</b>To explore more just double tap on right of screen and move it around  )</p>
-    <model-viewer src="./sony_fx_300_-_jackal/scene.gltf" alt="A 3D model"></model-viewer>
-    <button class="myButton" onclick="location.href='https://github.com/vishanth062' ;changeColor('button1')">
-      <img src="./github.png" alt="Logo" width="20" height="20">
-      github
-    </button>
-    <button class="myButton" onclick="location.href='https://www.google.com' ;sendEmail()">
-      <img src="./gmail.png" alt="Logo" width="20" height="20">
-      gmail
-    </button>
-    <button class="myButton" onclick="location.href='https://www.linkedin.com/in/vishanth-v-124797211';changeColor('button2') ">
-      <img src="./linkedin.png" alt="Logo" width="20" height="20">
-      linkedin
-    </button>
-     
-    <script>
-      function changeColor(buttonId) {
-      var button = document.getElementById(buttonId);
-      button.style.backgroundColor = "#e74c3c"; // Change to your desired color
-    }
-
-    function sendEmail() {
-    // Replace 'your.email@gmail.com' with your actual Gmail address
-    var email = 'vishanth453@gmail.com';
-    var subject = 'have any questions to ask';
-    var body = 'lets talk ';
-
-    // Construct the mailto link
-    var mailtoLink = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-
-    // Open the default email client
-    window.location.href = mailtoLink;
-  }
-
-    </script>
-  
-    
-    <h2>About Me</h2>
-    <blockquote style="background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;">
-      A deliberate student currently studying in Alva's Institute of Engineering</br>
-       and Technology in ECE branch, at the start of my</br>
-      professional career I believed that "exploring the unknown path will </br>
-      always rewards you with great skills",so at the</br>
-      beginning I acquired knowledge of various sectors in tech and built a </br>
-      strong grip on<b style="color: rgb(106, 98, 47);"> c programming language</b>, in these</br>
-      world of IOT I also hold the knowledge of <b style="color: rgb(106, 98, 47);">microcontroller and embedded</b> </br>
-      system programming, have experience in</br>
-      Digital/Analog circuit designing and debugging, I was also</br>
-       curious on how the autonomous systems work so I started to</br>
-      dive into the field of Control Systems Engineering and navigation </br>
-      algorithms,As we know that a good product</br>
-      development cannot be done through a knowledge of a single </br>
-      stream, so I also hold knowledge and skills of</br>
-      Java,python,javascript.leaving in era of space exploration </br>
-      i have a good hold on telescope building,entering into new</br>
-      phase of meta world its good to known about it ,so I have </br>
-      a good hold on  <b style="color: rgb(106, 98, 47);">AR/VR development through unity</b></br>
-    </blockquote>
-
-  </br>
-    <h2>Achievements/Projects:</h2>
-    <div class="right-align">
-    <h3 style="color: rgb(218, 196, 239);">Member of Envision lab
-    </h3>
-    
-  
-    <ul dir="rtl" style="list-style-position: inside;background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;">
-      <li >
-        project on increasing the value precision of sensor using low pass and butterworth filter 
-      </li>
-      <li>built a line following robot using maze solver algorithm
-      </li>
-      <li>attended the workshop on chatbot
-
-
-      </li>
-      <li>working on pothole detection using point cloud
-
-        
-      </li>
-      <li>AR visiting card using unity      </li>
-      <li>
-        participated in e-yantra by IIT bombay
-      </li>
-    </ul>
-    </div>
-
-
-    <h3>Member of Alvas Space Explorers</h3>
-    <ul style="background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;">
-      <li>
-        member of the team which built 15 telescopes
-      </li>
-      <li>
-        gave talk on "working of telescopes in international jamboree -2022
-      </li>
-      <li>
-        conducted 7 day star gazing in international jamboree-2022
-      </li>
-    </ul>
-  </br>
-
-
-  <div class="right-align" >
-<h3>Member of Entrepreneurial Development Cell</h3>
-<ul dir="rtl" style="list-style-position: inside;background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;">
-  <li >
-    participated in workshop of patent filing
-
-  </li>
-  <li>attended 1 week workshop of Entrepreneurial skill
-    development
-    
-  </li>
-  <li>Been a member of a team which got selected </br>from the
-    college for the National level Idea Hackathon
-  </li>
-  
-</ul>
-  </div>
-<h3>Aviation lab</h3>
-<ul style="background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;">
-  <li>
-    hands on workshop on Quad copter using pixHawk
-  </li>
-  <li>
-    member of the team which conducted workshop on RC
-    plane build
-    
-  </li>
-</ul>
-</br>
-<div class="right-align" >
-<h3>Non technical</h3>
-<ul dir="rtl" style="list-style-position: inside;background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;" >
-<li>
-  won debate and elocution competition conducted
-by cultural team
-</li>
-<li>
-  participated in debate and elocution competition
-conducted during VTU cultural fest, bangalore
-</li>
-</ul>
-</div>
-
-
-</br>
-<h2>certification courses :</h2>
-</br>
-<h3>linkedin </h3>
-<ul style="background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;">
-  <li>
-  <a href="https://www.linkedin.com/posts/vishanth-v-124797211_certificate-of-completion-activity-7044410326636736512-zfzt?trk=public_profile-settings_share_view" style="color: aqua;">C Programming for Embedded Application
-  </a>
-</li>
-<li>
-  <a href="https://www.linkedin.com/posts/vishanth-v-124797211_certificate-of-completion-activity-7045827259781292032-3NA9?trk=public_profile-settings_share_view" style="color:aqua;">Java Algorithms</a>
-</li>
-<li>
-  <a href="https://www.linkedin.com/posts/vishanth-v-124797211_certificate-of-completion-activity-7045646919146057728-MfJU?trk=public_profile-settings_share_view" style="color : aqua;">Git Essential Training</a>
-</li>
-<li>
-  <a href="https://www.linkedin.com/posts/vishanth-v-124797211_certificate-of-completion-activity-7049907989238956032-ojDS?trk=public_profile-settings_share_view" style="color : aqua;">Coding for Visual Learners: Learning JavaScript</a>
-</li>
-</ul>
-<div class="right-align">
-  <h3>google </h3>
-  <ul dir="rtl" style="list-style-position: inside;background-color: black; color: white; border-radius: 10px; padding: 15px; display: flex;">
-  <li>
-    <a href="https://www.coursera.org/account/accomplishments/verify/P8JFTWNF78MD" style="color:aqua;">Crash Course on Python by Google</a>
-  </li>
-  </ul>
-
-</div>
-<h3>oracale</h3>
-
-
-
-
-
-
-
-
-</br>
-<h2>Education</h2>
-<div style="background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;background: url(./eduback.jpg);background-size: cover;">
-
-<ul class="right-align">
-  <li>
-    <p>
-      <img src="./alvas.png" alt="Logo" width="100" height="100" style="border-radius: 20px;"></img>
-      <b>Alvas institute of engineering and
-      technology
-      </b></br>moodbidri</br>2022-2023</p>
-  </li>
-  <li>
-    
-    <p>
-      <img src="./maseshpu.png" alt="Logo" width="100" height="100" style="border-radius: 20px;"></img>
-      <b>Mahesh Pu College</b></br>pre university college
-  </br>manglore</br>2020 
-  </p></li>
-  <li>
-    <p>
-      <img src="./prakruti.png" alt="Logo" width="50" height="50" style="border-radius: 20px;"></img>
-      <b>prakruti national school</b></br>
-      karkala</br>SSLC</br>2018
-    </p>
-  </li>
-  
-</ul>
-</div>
-<div class="skill-container" style="background-color: black; color: white; border-radius: 10px; padding: 15px; display: inline-block;height: 100%;width: 100%; object-fit: contain;background: url(./pexels-furknsaglam-3109671.jpg);background-size: cover;">
-  <h2>Language :</h2>
-  <div class="skill">
-      <div class="skill-label">C</div>
-      <div class="progress-bar">
-          <div class="progress" style="width: 80%;"></div>
-      </div>
-  </div>
-  <div class="skill">
-    <div class="skill-label">Matlab</div>
-    <div class="progress-bar">
-        <div class="progress" style="width: 60%;"></div>
-    </div>
-
-    <div class="skill">
-      <div class="skill-label">VHDL</div>
-      <div class="progress-bar">
-          <div class="progress" style="width: 60%;"></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-label">JAVA</div>
-        <div class="progress-bar">
-            <div class="progress" style="width: 60%;"></div>
-        </div>
-
-        <div class="skill">
-          <div class="skill-label">JavaScript</div>
-          <div class="progress-bar">
-              <div class="progress" style="width: 60%;"></div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-label">HDL</div>
-            <div class="progress-bar">
-                <div class="progress" style="width: 60%;"></div>
-            </div>
-
-            <div class="skill">
-              <div class="skill-label">C#</div>
-              <div class="progress-bar">
-                  <div class="progress" style="width: 60%;"></div>
-              </div>
-              </div>
-<h2> Expertise:</h2>
-<ul class="right-align" dir="rtl">
-  <li>circuit designing and debugging</li>
-  <li>leadership</li>
-  <li>microcontroller based projects</li>
-  <li>telescope</li>
-
-
-
-</ul>
-    <h2>Hobbies:</h2>  
-    <ul>
-      <li>Participating in coding contests</li>
-<li>night sky gazing</li>
-<li>exploring new technologies in market</li>
-    </ul>
-   
-  </main>
-  </div>
- 
 </html>

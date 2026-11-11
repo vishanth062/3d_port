@@ -1,0 +1,24 @@
+.about {
+  border-top: 1px solid var(--color-border);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-7);
+  max-width: none;
+}
+
+.grid p {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 300;
+  color: var(--color-text);
+  max-width: 34ch;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
