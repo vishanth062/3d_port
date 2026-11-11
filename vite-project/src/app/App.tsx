@@ -16,13 +16,45 @@ import { ScrollJourneyProvider } from '@/context/ScrollJourneyContext';
 
 function AppShell() {
   const [ready, setReady] = useState(false);
+  const [mountScene, setMountScene] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
+    let idleId: number | undefined;
+    let timeoutId: number | undefined;
+
+    // Paint UI first; mount WebGL when the browser is idle (or shortly after).
+    const startScene = () => setMountScene(true);
+    const ric = (
+      window as Window & {
+        requestIdleCallback?: (
+          cb: () => void,
+          opts?: { timeout: number },
+        ) => number;
+        cancelIdleCallback?: (id: number) => void;
+      }
+    ).requestIdleCallback;
+
+    if (typeof ric === 'function') {
+      idleId = ric(startScene, { timeout: 500 });
+    } else {
+      timeoutId = window.setTimeout(startScene, 180);
+    }
+
+    const readyTimer = window.setTimeout(() => {
       setReady(true);
     }, 900);
+
     return () => {
-      window.clearTimeout(timer);
+      const cic = (
+        window as Window & { cancelIdleCallback?: (id: number) => void }
+      ).cancelIdleCallback;
+      if (idleId !== undefined && typeof cic === 'function') {
+        cic(idleId);
+      }
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId);
+      }
+      window.clearTimeout(readyTimer);
     };
   }, []);
 
@@ -33,7 +65,7 @@ function AppShell() {
       </a>
       <div className="grain" aria-hidden />
       <LoadingScreen ready={ready} />
-      <ThreeScene />
+      {mountScene ? <ThreeScene /> : null}
       <JourneyHUD />
       <div className="app-shell">
         <Navbar />

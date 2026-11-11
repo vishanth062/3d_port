@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { AdaptiveDpr, AdaptiveEvents, Preload } from '@react-three/drei';
 import { Starfield } from '@/three/objects/Starfield';
@@ -17,6 +17,7 @@ import { ContactNebula } from '@/three/objects/ContactNebula';
 import { StoryLights } from '@/three/objects/StoryLights';
 import { ScrollCameraRig } from '@/three/camera/ScrollCameraRig';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { dprForTier, getDeviceTier } from '@/three/utils/performance';
 import { projects } from '@/data/projects';
 
 function SceneContents() {
@@ -81,14 +82,19 @@ function SceneContents() {
 }
 
 export function UniverseScene() {
+  const tier = useMemo(() => getDeviceTier(), []);
+  const dpr = useMemo(() => dprForTier(tier), [tier]);
+  const antialias = tier !== 'low';
+
   return (
     <Canvas
-      dpr={[1, 1.6]}
+      dpr={dpr}
       camera={{ position: [0.2, 1.9, 9.5], fov: 40, near: 0.1, far: 180 }}
       gl={{
-        antialias: true,
+        antialias,
         alpha: true,
         powerPreference: 'high-performance',
+        stencil: false,
       }}
       style={{ width: '100%', height: '100%' }}
       aria-hidden

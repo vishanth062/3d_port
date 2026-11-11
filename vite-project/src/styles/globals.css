@@ -114,6 +114,11 @@ a {
   padding-top: 0;
 }
 
+.app-shell > main > section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 720px;
+}
+
 .section-inner {
   width: min(100%, var(--panel-max));
   max-width: 100%;

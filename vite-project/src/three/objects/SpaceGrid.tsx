@@ -2,6 +2,7 @@ import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useScrollJourney } from '@/context/ScrollJourneyContext';
+import { getDeviceTier, gridSegmentsForTier } from '@/three/utils/performance';
 
 interface SpaceGridProps {
   reducedMotion: boolean;
@@ -20,7 +21,8 @@ export function SpaceGrid({ reducedMotion }: SpaceGridProps) {
   const { progress, station } = useScrollJourney();
 
   const geometry = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(90, 160, 70, 100);
+    const [wSeg, hSeg] = gridSegmentsForTier(getDeviceTier());
+    const geo = new THREE.PlaneGeometry(90, 160, wSeg, hSeg);
     geo.rotateX(-Math.PI / 2);
     return geo;
   }, []);

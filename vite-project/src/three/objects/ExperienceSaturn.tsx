@@ -7,6 +7,12 @@ import {
   createSaturnRingTexture,
   createSaturnTexture,
 } from '@/three/utils/createPlanetTexture';
+import {
+  getDeviceTier,
+  sparkleCountForTier,
+  sphereSegmentsForTier,
+  textureSizeForTier,
+} from '@/three/utils/performance';
 
 interface ExperienceSaturnProps {
   reducedMotion: boolean;
@@ -50,9 +56,23 @@ export function ExperienceSaturn({ reducedMotion }: ExperienceSaturnProps) {
   const active =
     station === 'experience' || (progress > 0.32 && progress < 0.52);
 
-  const bodyMap = useMemo(() => createSaturnTexture(1024), []);
-  const ringMap = useMemo(() => createSaturnRingTexture(1024), []);
-  const sparkles = useMemo(() => buildRingSparkles(5200), []);
+  const tier = useMemo(() => getDeviceTier(), []);
+  const bodyMap = useMemo(
+    () => createSaturnTexture(textureSizeForTier(tier)),
+    [tier],
+  );
+  const ringMap = useMemo(
+    () => createSaturnRingTexture(textureSizeForTier(tier)),
+    [tier],
+  );
+  const sparkles = useMemo(
+    () => buildRingSparkles(sparkleCountForTier(tier)),
+    [tier],
+  );
+  const [bodySeg, bodySegY] = useMemo(
+    () => sphereSegmentsForTier(tier),
+    [tier],
+  );
 
   useFrame(({ clock }) => {
     const t = clock.elapsedTime;
@@ -94,7 +114,7 @@ export function ExperienceSaturn({ reducedMotion }: ExperienceSaturnProps) {
 
       {/* Planet body */}
       <mesh ref={bodyRef} rotation={[0, Math.PI * 0.35, 0.08]}>
-        <sphereGeometry args={[RADIUS, 96, 96]} />
+        <sphereGeometry args={[RADIUS, bodySeg, bodySegY]} />
         <meshStandardMaterial
           map={bodyMap}
           roughness={0.62}
@@ -106,7 +126,7 @@ export function ExperienceSaturn({ reducedMotion }: ExperienceSaturnProps) {
 
       {/* Bright limb where planet kisses the rings */}
       <mesh scale={1.01} rotation={[0, Math.PI * 0.35, 0.08]}>
-        <sphereGeometry args={[RADIUS, 64, 64]} />
+        <sphereGeometry args={[RADIUS, Math.max(32, bodySeg / 2), Math.max(32, bodySegY / 2)]} />
         <meshBasicMaterial
           color="#ffc878"
           transparent
