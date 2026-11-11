@@ -4,16 +4,27 @@
 
 .grid {
   display: grid;
-  gap: var(--space-7);
+  gap: var(--space-5);
   max-width: none;
 }
 
 .grid p {
   margin: 0;
-  font-size: var(--fs-md);
+  font-size: var(--fs-base);
   font-weight: 300;
   color: var(--color-text);
-  max-width: 34ch;
+  max-width: 40ch;
+}
+
+@media (min-width: 720px) {
+  .grid {
+    gap: var(--space-7);
+  }
+
+  .grid p {
+    font-size: var(--fs-base);
+    max-width: 34ch;
+  }
 }
 
 @media (min-width: 900px) {

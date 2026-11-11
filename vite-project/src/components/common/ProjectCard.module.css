@@ -26,9 +26,18 @@
 
 .meta {
   display: flex;
-  justify-content: space-between;
-  gap: var(--space-3);
-  align-items: baseline;
+  flex-direction: column;
+  gap: var(--space-1);
+  align-items: flex-start;
+}
+
+@media (min-width: 560px) {
+  .meta {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--space-3);
+    align-items: baseline;
+  }
 }
 
 .period,
@@ -53,7 +62,8 @@
 
 .card h3 {
   margin: 0;
-  font-size: clamp(1.7rem, 1.3rem + 1vw, 2.4rem);
+  font-size: clamp(0.98rem, 0.82rem + 0.75vw, 1.55rem);
+  overflow-wrap: anywhere;
 }
 
 .highlights,

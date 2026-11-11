@@ -140,13 +140,38 @@
 
 @media (max-width: 720px) {
   .hud {
-    right: var(--space-4);
-    bottom: var(--space-4);
-    width: min(15rem, calc(100vw - 1.5rem));
+    left: max(0.75rem, env(safe-area-inset-left));
+    right: auto;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: min(var(--hero-panel-max), calc(100vw - 1.5rem));
+    max-width: none;
+    padding: 0.55rem 0.65rem;
+    gap: 0.45rem;
   }
 
   .hudFinale {
-    bottom: 7.5rem;
+    bottom: max(5.75rem, calc(4.5rem + env(safe-area-inset-bottom)));
+  }
+
+  .radar {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .radarSvg {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .station strong {
+    font-size: 0.84rem;
+  }
+
+  .line {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .hint {

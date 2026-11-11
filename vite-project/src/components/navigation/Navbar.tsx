@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { navItems } from '@/data/navigation';
 import { profile } from '@/data/profile';
 import { useActiveSection } from '@/hooks/useActiveSection';
@@ -9,16 +9,33 @@ export function Navbar() {
   const activeId = useActiveSection();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.classList.toggle('nav-open', open);
+    return () => {
+      document.body.classList.remove('nav-open');
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.matchMedia('(min-width: 860px)').matches) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.bar}>
-        <a className={styles.brand} href="#top">
+        <a className={styles.brand} href="#top" onClick={() => setOpen(false)}>
           {profile.name}
         </a>
 
         <button
           type="button"
-          className={styles.menuToggle}
+          className={cn(styles.menuToggle, open && styles.menuToggleOpen)}
           aria-expanded={open}
           aria-controls="primary-navigation"
           onClick={() => {
@@ -26,6 +43,7 @@ export function Navbar() {
           }}
         >
           <span className="sr-only">Toggle navigation</span>
+          <span />
           <span />
           <span />
         </button>

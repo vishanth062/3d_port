@@ -18,33 +18,40 @@
   --color-amber: #fdba74;
   --color-violet: #c4b5fd;
 
-  /* Typography */
+  /* Typography — compact global scale */
   --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
   --font-body: 'Manrope', 'Segoe UI', sans-serif;
-  --fs-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
-  --fs-sm: clamp(0.84rem, 0.8rem + 0.2vw, 0.92rem);
-  --fs-base: clamp(0.98rem, 0.94rem + 0.25vw, 1.05rem);
-  --fs-md: clamp(1.1rem, 1.02rem + 0.4vw, 1.28rem);
-  --fs-lg: clamp(1.55rem, 1.2rem + 1.1vw, 2.2rem);
-  --fs-xl: clamp(2.3rem, 1.6rem + 2.2vw, 3.8rem);
-  --fs-hero: clamp(3.6rem, 2.2rem + 5.5vw, 7.2rem);
-  --lh-tight: 0.95;
-  --lh-snug: 1.25;
-  --lh-body: 1.7;
+  --fs-xs: clamp(0.55rem, 0.5rem + 0.22vw, 0.72rem);
+  --fs-sm: clamp(0.65rem, 0.58rem + 0.28vw, 0.82rem);
+  --fs-base: clamp(0.74rem, 0.66rem + 0.32vw, 0.92rem);
+  --fs-md: clamp(0.8rem, 0.7rem + 0.4vw, 1.05rem);
+  --fs-lg: clamp(0.95rem, 0.78rem + 0.7vw, 1.45rem);
+  --fs-xl: clamp(1.1rem, 0.85rem + 1.1vw, 2.15rem);
+  --fs-hero: clamp(1.45rem, 1rem + 2.2vw, 3.4rem);
+  --lh-tight: 1;
+  --lh-snug: 1.3;
+  --lh-body: 1.55;
 
-  /* Spacing */
+  /* Spacing + panel footprint */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-  --space-8: 4.5rem;
-  --space-9: 7rem;
-  --section-y: clamp(5rem, 10vw, 9rem);
+  --space-5: 1.25rem;
+  --space-6: 1.75rem;
+  --space-7: 2.5rem;
+  --space-8: 3.5rem;
+  --space-9: 5.5rem;
+  --section-y: clamp(2.75rem, 6vw, 9rem);
+  --gutter: max(0.75rem, env(safe-area-inset-left));
+  --gutter-right: max(0.75rem, env(safe-area-inset-right));
+  --panel-max: clamp(15.5rem, 68vw, 46rem);
+  --panel-pad: clamp(0.7rem, 1.8vw, 1.5rem);
+  --hero-panel-max: clamp(14.5rem, 64vw, 38rem);
   --content-max: 74rem;
   --content-narrow: 40rem;
+  --bp-md: 720px;
+  --bp-lg: 960px;
 
   --radius-sm: 0.25rem;
   --radius-md: 0.45rem;

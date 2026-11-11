@@ -5,28 +5,49 @@
 .inner {
   display: grid;
   gap: var(--space-7);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.inner > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .panel {
   position: relative;
-  overflow: hidden;
-  padding: var(--space-8) 0 0;
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--space-5) 0 0;
   border: 0;
   border-top: 1px solid var(--color-border);
   border-radius: 0;
   background: transparent;
+  overflow: hidden;
 }
 
 .orb {
-  position: absolute;
-  right: 0;
-  top: 1rem;
-  width: 8rem;
-  height: 8rem;
-  border-radius: 50%;
-  border: 1px solid rgba(143, 179, 201, 0.35);
-  box-shadow: inset 0 0 40px rgba(143, 179, 201, 0.1);
-  animation: drift 6s ease-in-out infinite alternate;
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .panel {
+    padding: var(--space-8) 0 0;
+  }
+
+  .orb {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 1px solid rgba(143, 179, 201, 0.35);
+    box-shadow: inset 0 0 40px rgba(143, 179, 201, 0.1);
+    animation: drift 6s ease-in-out infinite alternate;
+  }
 }
 
 .email,
@@ -36,10 +57,32 @@
 }
 
 .email {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   color: var(--color-text);
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 1.3rem + 1.5vw, 3rem);
-  letter-spacing: -0.04em;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  word-break: break-all;
+  hyphens: none;
+}
+
+.emailAt {
+  display: inline;
+}
+
+@media (min-width: 720px) {
+  .email {
+    font-size: clamp(1.05rem, 0.85rem + 0.9vw, 1.55rem);
+  }
 }
 
 .phone,
@@ -47,13 +90,38 @@
   margin-top: var(--space-2);
   color: var(--color-text-muted);
   font-weight: 300;
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .actions {
   display: grid;
-  gap: var(--space-5);
-  margin-top: var(--space-6);
-  justify-items: start;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  justify-items: stretch;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.actions > a,
+.actions > button {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 560px) {
+  .actions {
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    justify-items: start;
+  }
+
+  .actions > a,
+  .actions > button {
+    width: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

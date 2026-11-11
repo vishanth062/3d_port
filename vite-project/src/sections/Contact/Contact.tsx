@@ -6,6 +6,8 @@ import { profile } from '@/data/profile';
 import styles from './Contact.module.css';
 
 export function Contact() {
+  const [emailLocal, emailDomain] = profile.email.split('@');
+
   return (
     <AnimatedSection id="contact" className={`section ${styles.contact}`}>
       <div className={`section-inner ${styles.inner}`}>
@@ -18,7 +20,11 @@ export function Contact() {
         </div>
         <div className={styles.panel} data-animate>
           <div className={styles.orb} aria-hidden />
-          <p className={styles.email}>{profile.email}</p>
+          <a className={styles.email} href={`mailto:${profile.email}`}>
+            {emailLocal}
+            <wbr />
+            <span className={styles.emailAt}>@{emailDomain}</span>
+          </a>
           <p className={styles.phone}>{profile.phone}</p>
           <p className={styles.location}>{profile.location}</p>
           <div className={styles.actions}>
