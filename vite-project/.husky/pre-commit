@@ -1,0 +1,3 @@
+cd vite-project || exit 1
+npm exec --no -- lint-staged
+npm run typecheck

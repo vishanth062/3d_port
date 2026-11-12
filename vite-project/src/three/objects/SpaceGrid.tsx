@@ -42,16 +42,17 @@ export function SpaceGrid({ reducedMotion }: SpaceGridProps) {
     const mat = materialRef.current;
     if (!mat) return;
 
+    const { uTime, uScroll, uColor } = mat.uniforms;
+    if (!uTime || !uScroll || !uColor) return;
+
     const t = clock.elapsedTime;
-    mat.uniforms.uTime.value = t;
+    uTime.value = t;
     // Continuous forward scroll — never wraps / snaps
-    mat.uniforms.uScroll.value += delta * 3.5;
+    uScroll.value += delta * 3.5;
 
     const cool =
-      station === 'education'
-        ? 1
-        : THREE.MathUtils.smoothstep(progress, 0.7, 0.88);
-    (mat.uniforms.uColor.value as THREE.Color).copy(GRID_WARM).lerp(GRID_COOL, cool);
+      station === 'education' ? 1 : THREE.MathUtils.smoothstep(progress, 0.7, 0.88);
+    (uColor.value as THREE.Color).copy(GRID_WARM).lerp(GRID_COOL, cool);
   });
 
   return (
