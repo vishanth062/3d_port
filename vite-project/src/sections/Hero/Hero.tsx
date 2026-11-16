@@ -59,7 +59,7 @@ export function Hero() {
           {profile.summary}
         </p>
         <div className={styles.actions} data-animate>
-          <Button href="#projects">Enter the system</Button>
+          <Button href="#projects">View projects</Button>
           <Button href={profile.resumeUrl} variant="ghost" download>
             Download resume
           </Button>

@@ -24,6 +24,11 @@
   max-width: 40ch;
 }
 
+/* Contact already lists socials — hide footer links on small screens */
+.socials {
+  display: none;
+}
+
 @media (min-width: 720px) {
   .footer {
     padding: var(--space-7) var(--space-5) var(--space-8);
@@ -35,5 +40,9 @@
     justify-content: space-between;
     gap: var(--space-4);
     align-items: center;
+  }
+
+  .socials {
+    display: block;
   }
 }

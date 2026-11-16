@@ -14,8 +14,8 @@ export function Projects() {
         <div data-animate>
           <SectionHeading
             eyebrow="Projects"
-            title="Orbit the systems — click a planet in space, or read the dossiers below."
-            description="Interactive stations mirror the résumé work across healthcare, hospitality, and developer tooling."
+            title="Orbit the systems — select a planet or a dossier below."
+            description="On desktop, click a glowing planet in the scene. On any device, open a project card to read the full dossier."
           />
         </div>
         <div className={styles.grid}>
@@ -30,10 +30,7 @@ export function Projects() {
                 setSelectedProjectId(null);
               }}
             >
-              <ProjectCard
-                project={project}
-                active={selectedProjectId === project.id}
-              />
+              <ProjectCard project={project} active={selectedProjectId === project.id} />
             </div>
           ))}
         </div>

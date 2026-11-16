@@ -11,7 +11,15 @@
   background: rgba(4, 8, 16, 0.72);
   backdrop-filter: blur(14px);
   pointer-events: none;
-  transition: bottom 0.35s ease;
+  transition:
+    bottom 0.35s ease,
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+:global(body.nav-open) .hud {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Clear the footer only on the final Contact / Arrival screen */

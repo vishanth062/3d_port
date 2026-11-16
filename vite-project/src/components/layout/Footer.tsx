@@ -11,7 +11,9 @@ export function Footer() {
         <p>
           © {year} {profile.name}. Built with React, TypeScript, and Three.js.
         </p>
-        <SocialLinks links={profile.socials} />
+        <div className={styles.socials}>
+          <SocialLinks links={profile.socials} />
+        </div>
       </div>
     </footer>
   );

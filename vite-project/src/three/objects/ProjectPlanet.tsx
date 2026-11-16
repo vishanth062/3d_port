@@ -15,12 +15,7 @@ interface ProjectPlanetProps {
   reducedMotion: boolean;
 }
 
-const STYLES: ProjectPlanetStyle[] = [
-  'volcanic',
-  'gasband',
-  'cratered',
-  'storm',
-];
+const STYLES: ProjectPlanetStyle[] = ['volcanic', 'gasband', 'cratered', 'storm'];
 
 const ACCENTS = ['#f97316', '#eab308', '#a8a29e', '#c084fc'];
 
@@ -35,18 +30,13 @@ const MATERIAL: Record<
 };
 
 /** Project worlds — each gets a unique surface style, size, and ornament. */
-export function ProjectPlanet({
-  project,
-  index,
-  reducedMotion,
-}: ProjectPlanetProps) {
+export function ProjectPlanet({ project, index, reducedMotion }: ProjectPlanetProps) {
   const groupRef = useRef<THREE.Group>(null);
   const planetRef = useRef<THREE.Mesh>(null);
   const ringRef = useRef<THREE.Mesh>(null);
   const scaleTarget = useRef(new THREE.Vector3(1, 1, 1));
   const [hovered, setHovered] = useState(false);
-  const { selectedProjectId, setSelectedProjectId, progress } =
-    useScrollJourney();
+  const { selectedProjectId, setSelectedProjectId, progress } = useScrollJourney();
 
   const selected = selectedProjectId === project.id;
   const style = STYLES[index % STYLES.length]!;
@@ -87,7 +77,12 @@ export function ProjectPlanet({
       ringRef.current.rotation.z = t * 0.08;
     }
     const target = lit ? 1.18 : active ? 1 : 0.82;
-    scaleTarget.current.set(target, target, target);
+    const hoverBoost = hovered ? 1.08 : 1;
+    scaleTarget.current.set(
+      target * hoverBoost,
+      target * hoverBoost,
+      target * hoverBoost,
+    );
     group.scale.lerp(scaleTarget.current, 0.08);
   });
 
@@ -121,9 +116,7 @@ export function ProjectPlanet({
           map={maps.color}
           emissiveMap={maps.emissive}
           emissive={accent}
-          emissiveIntensity={
-            (lit ? 1.25 : 0.85) * mat.emissiveGain
-          }
+          emissiveIntensity={(lit ? 1.25 : 0.85) * mat.emissiveGain}
           roughness={mat.roughness}
           metalness={mat.metalness}
         />
@@ -159,11 +152,7 @@ export function ProjectPlanet({
       {style === 'gasband' && (
         <mesh rotation={[Math.PI / 2.6, 0.2, 0]}>
           <torusGeometry args={[radius * 1.85, 0.02, 8, 64]} />
-          <meshBasicMaterial
-            color="#fde68a"
-            transparent
-            opacity={lit ? 0.55 : 0.28}
-          />
+          <meshBasicMaterial color="#fde68a" transparent opacity={lit ? 0.55 : 0.28} />
         </mesh>
       )}
 
@@ -183,19 +172,11 @@ export function ProjectPlanet({
         <>
           <mesh position={[radius * 1.35, radius * 0.2, 0]}>
             <sphereGeometry args={[radius * 0.22, 16, 16]} />
-            <meshStandardMaterial
-              color="#78716c"
-              roughness={0.9}
-              metalness={0.15}
-            />
+            <meshStandardMaterial color="#78716c" roughness={0.9} metalness={0.15} />
           </mesh>
           <mesh position={[-radius * 1.15, -radius * 0.35, radius * 0.4]}>
             <sphereGeometry args={[radius * 0.12, 12, 12]} />
-            <meshStandardMaterial
-              color="#57534e"
-              roughness={0.85}
-              metalness={0.2}
-            />
+            <meshStandardMaterial color="#57534e" roughness={0.85} metalness={0.2} />
           </mesh>
         </>
       )}
@@ -212,13 +193,13 @@ export function ProjectPlanet({
         </mesh>
       )}
 
-      {lit && (
+      {(lit || hovered) && (
         <Html center distanceFactor={10} style={{ pointerEvents: 'none' }}>
           <div
             style={{
               padding: '0.45rem 0.7rem',
               border: `1px solid ${accent}99`,
-              background: 'rgba(5,9,18,0.85)',
+              background: 'rgba(5,9,18,0.9)',
               color: '#fde68a',
               fontFamily: 'Space Grotesk, sans-serif',
               fontSize: '0.72rem',
@@ -226,9 +207,22 @@ export function ProjectPlanet({
               textTransform: 'uppercase',
               whiteSpace: 'nowrap',
               backdropFilter: 'blur(8px)',
+              boxShadow: hovered ? `0 0 24px ${accent}55` : '0 0 0 transparent',
+              transform: hovered ? 'scale(1.04)' : 'scale(1)',
+              transition: 'transform 160ms ease, box-shadow 160ms ease',
             }}
           >
             {project.name}
+            <div
+              style={{
+                marginTop: '0.25rem',
+                fontSize: '0.58rem',
+                letterSpacing: '0.14em',
+                color: 'rgba(213,228,238,0.75)',
+              }}
+            >
+              {hovered ? 'Click to open' : 'Interactive'}
+            </div>
           </div>
         </Html>
       )}

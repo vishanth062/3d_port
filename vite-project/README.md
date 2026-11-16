@@ -2,7 +2,9 @@
 
 Premium space-themed professional portfolio built with React, strict TypeScript, Vite, Three.js, and React Three Fiber.
 
-Live site target: [https://protfolio-zs97.onrender.com](https://protfolio-zs97.onrender.com)
+Live site (Render): [https://protfolio-zs97.onrender.com](https://protfolio-zs97.onrender.com)
+
+Note: the Render subdomain still uses the historical `protfolio` spelling. Prefer a custom domain (e.g. `vishanth.dev`) for a hire-ready URL — the subdomain itself cannot be renamed in place.
 
 ## Technology stack
 

@@ -38,16 +38,15 @@ export interface EarthMaps {
 }
 
 export type WarmPlanetTint =
-  | 'ember'
-  | 'copper'
-  | 'amber'
-  | 'bronze'
-  | 'rust'
-  | 'ocean';
+  'ember' | 'copper' | 'amber' | 'bronze' | 'rust' | 'ocean' | 'volcanic' | 'ice';
 
 const TINTS: Record<
   WarmPlanetTint,
-  { land: [number, number, number]; sea: [number, number, number]; glow: [number, number, number] }
+  {
+    land: [number, number, number];
+    sea: [number, number, number];
+    glow: [number, number, number];
+  }
 > = {
   ember: {
     land: [42, 24, 16],
@@ -79,13 +78,20 @@ const TINTS: Record<
     sea: [12, 28, 72],
     glow: [120, 220, 200],
   },
+  volcanic: {
+    land: [118, 92, 58],
+    sea: [18, 22, 48],
+    glow: [255, 120, 48],
+  },
+  ice: {
+    land: [188, 210, 220],
+    sea: [48, 92, 138],
+    glow: [170, 230, 255],
+  },
 };
 
 /** Dark-warm planet maps (espresso / umber / bronze) + gold city lights. */
-export function createEarthMaps(
-  size = 768,
-  tint: WarmPlanetTint = 'amber',
-): EarthMaps {
+export function createEarthMaps(size = 768, tint: WarmPlanetTint = 'amber'): EarthMaps {
   const palette = TINTS[tint];
   const colorCanvas = document.createElement('canvas');
   const emitCanvas = document.createElement('canvas');
@@ -106,6 +112,7 @@ export function createEarthMaps(
       const cloud = fbm(u * 9 + 4, v * 6 + 2);
       const ridge = fbm(u * 12, v * 8);
 
+      const polar = Math.pow(Math.max(0, Math.abs(v * 2 - 1) - 0.62) / 0.38, 1.35);
       let r: number;
       let g: number;
       let b: number;
@@ -120,6 +127,29 @@ export function createEarthMaps(
             r = Math.floor(r * 0.55 + 40);
             g = Math.floor(g * 0.65 + 90);
             b = Math.floor(b * 0.55 + 110);
+          }
+        } else if (tint === 'volcanic') {
+          // Ash-olive continents with ember ridges / warm coasts
+          const lift = (n - 0.48) * 70 + ridge * 40 + cloud * 12;
+          const heat = Math.max(0, ridge - 0.55) * 1.8;
+          r = Math.min(255, Math.floor(palette.land[0] + lift * 0.4 + heat * 90));
+          g = Math.min(255, Math.floor(palette.land[1] + lift * 0.25 - heat * 20));
+          b = Math.min(255, Math.floor(palette.land[2] + lift * 0.12 - heat * 30));
+          if (coast) {
+            r = Math.floor(r * 0.55 + 90);
+            g = Math.floor(g * 0.45 + 40);
+            b = Math.floor(b * 0.4 + 20);
+          }
+        } else if (tint === 'ice') {
+          // Frosted pale land + strong polar caps
+          const lift = (n - 0.48) * 50 + ridge * 18 + cloud * 22;
+          r = Math.min(255, Math.floor(palette.land[0] + lift * 0.35 + polar * 55));
+          g = Math.min(255, Math.floor(palette.land[1] + lift * 0.4 + polar * 40));
+          b = Math.min(255, Math.floor(palette.land[2] + lift * 0.45 + polar * 35));
+          if (coast) {
+            r = Math.floor(r * 0.7 + 70);
+            g = Math.floor(g * 0.75 + 85);
+            b = Math.floor(b * 0.8 + 100);
           }
         } else {
           // Dark warm land — charcoal umber / espresso
@@ -140,6 +170,17 @@ export function createEarthMaps(
         r = Math.floor(6 + deep * 14 + n * 10 + shelf * 18 + cloud * 6);
         g = Math.floor(16 + deep * 28 + n * 22 + shelf * 40 + cloud * 10);
         b = Math.floor(48 + deep * 55 + n * 40 + shelf * 50 + cloud * 12);
+      } else if (tint === 'volcanic') {
+        const deep = fbm(u * 3.2 + 1.4, v * 2.4 + 0.8);
+        r = Math.floor(10 + deep * 18 + n * 12 + cloud * 8);
+        g = Math.floor(14 + deep * 20 + n * 14 + cloud * 6);
+        b = Math.floor(36 + deep * 40 + n * 28 + cloud * 10);
+      } else if (tint === 'ice') {
+        const deep = fbm(u * 3.2 + 1.4, v * 2.4 + 0.8);
+        const shelf = Math.max(0, 0.52 - n) * 1.8;
+        r = Math.floor(28 + deep * 30 + n * 18 + shelf * 40 + polar * 90 + cloud * 10);
+        g = Math.floor(70 + deep * 40 + n * 24 + shelf * 45 + polar * 70 + cloud * 12);
+        b = Math.floor(110 + deep * 50 + n * 30 + shelf * 40 + polar * 50 + cloud * 14);
       } else {
         // Dark warm seas — nearly black with a bronze hint
         r = Math.floor(palette.sea[0] + n * 18 + cloud * 8);
@@ -157,9 +198,15 @@ export function createEarthMaps(
       const gridU = Math.abs(Math.sin(u * Math.PI * 48));
       const gridV = Math.abs(Math.sin(v * Math.PI * 28));
       const network =
-        continent &&
-        (gridU > 0.92 || gridV > 0.94 || hash(x * 0.7, y * 1.1) > 0.985);
-      const glow = network ? night * (0.6 + hash(x, y) * 0.4) : 0;
+        continent && (gridU > 0.92 || gridV > 0.94 || hash(x * 0.7, y * 1.1) > 0.985);
+      let glow = network ? night * (0.6 + hash(x, y) * 0.4) : 0;
+      if (tint === 'volcanic') {
+        const vent =
+          continent && ridge > 0.62 ? (ridge - 0.62) * 2.4 * (0.35 + night) : 0;
+        glow = Math.min(1, glow * 0.55 + vent);
+      } else if (tint === 'ice') {
+        glow = network ? night * 0.35 : polar * 0.22;
+      }
 
       emitImg.data[i] = Math.floor(palette.glow[0] * glow);
       emitImg.data[i + 1] = Math.floor(palette.glow[1] * glow);
